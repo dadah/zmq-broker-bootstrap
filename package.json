@@ -1,0 +1,42 @@
+{
+  "name": "cj-broker",
+  "version": "0.0.0",
+  "description": "0MQ Service oriented Suite - Broker",
+  "main": "index.js",
+  "scripts": {
+    "start": "pm2 --run-as-user brokerjs start /var/www/brokerjs/bin/zss-broker -x -- --name brokerjs -e /var/www/brokerjs/log/brokerjs_err.log -o /var/www/brokerjs/log/brokerjs.log --pid /var/www/brokerjs/pid/brokerjs.pid",
+    "stop": "pm2 stop brokerjs",
+    "pretest": "grunt jshint",
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pjanuario/zmq-service-suite-broker-js.git"
+  },
+  "keywords": [
+    "0MQ",
+    "ZeroMQ",
+    "SOA"
+  ],
+  "author": {
+    "name": "Pedro Januário",
+    "url": "http://shared-mind.tumblr.com"
+  },
+  "contributors": [],
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/pjanuario/zmq-service-suite-broker-js/issues"
+  },
+  "homepage": "https://github.com/pjanuario/zmq-service-suite-broker-js",
+  "dependencies": {
+    "convict": "^0.4.2",
+    "lodash": "^2.4.1",
+    "logger-facade-airbrake-plugin": "0.0.0",
+    "logger-facade-console-plugin-nodejs": "0.0.1",
+    "logger-facade-nodejs": "0.0.2",
+    "zmq-service-suite-broker": "^0.0.7"
+  },
+  "engines": {
+    "node": ">=0.10.28"
+  }
+}

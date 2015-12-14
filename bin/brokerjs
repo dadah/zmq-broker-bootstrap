@@ -1,0 +1,37 @@
+#!/usr/bin/env node
+
+(function(){
+
+  if(!process.env.ZSS_CONFIG){
+    // get current directory
+    process.env.ZSS_CONFIG = __dirname.split("/").pop() + "/../config";
+  }
+
+  var _ = require('lodash');
+  var config = require('../config');
+  var Logger = require('logger-facade-nodejs');
+  var Broker = require('zmq-service-suite-broker');
+
+  // configure console
+  if(config.has('log.consolePlugin')) {
+    var LoggerConsolePlugin = require('logger-facade-console-plugin-nodejs');
+    var plugin = new LoggerConsolePlugin(config.get('log.consolePlugin'));
+    Logger.use(plugin);
+  }
+
+  var broker = new Broker(config.get('broker'));
+
+  // configure airbrake
+  if(config.has('log.airbrakePlugin')) {
+    var LoggerAirbrakePlugin = require('logger-facade-airbrake-plugin');
+    var airbrakeConfig = {
+      notifyUncaughtException: true,
+      appVersion: broker.version
+    };
+    airbrakeConfig = _.defaults(airbrakeConfig, config.get('log.airbrakePlugin'));
+    var plugin = new LoggerAirbrakePlugin(airbrakeConfig);
+    Logger.use(plugin);
+  }
+
+  broker.run();
+})();

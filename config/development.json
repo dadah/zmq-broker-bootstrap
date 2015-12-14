@@ -1,0 +1,11 @@
+{
+  "broker": {
+    "backend": "tcp://127.0.0.1:7776",
+    "frontend": "tcp://127.0.0.1:7777"
+  },
+  "log": {
+    "consolePlugin": {
+      "level": "debug"
+    }
+  }
+}
