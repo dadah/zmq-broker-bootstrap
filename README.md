@@ -1,4 +1,4 @@
-# CJ Broker
+# Broker bootstrap
 
 This project's purpose is to provide bootstrap configurations for logging and endpoints for use with [broker node implementation](https://github.com/pjanuario/zmq-service-suite-broker-js).
 
